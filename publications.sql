@@ -14,10 +14,19 @@ FROM authors, titles, publishers, titleauthor
 WHERE authors.au_id = titleauthor.au_id AND titleauthor.title_id = titles.title_id AND titles.pub_id = publishers.pub_id
 GROUP BY authors.au_id, au_lname, au_fname, pub_name;*/
 
-/*SELECT authors.au_id, au_lname, au_fname, SUM(qty) as Total
+/* 3.SELECT authors.au_id, au_lname, au_fname, SUM(qty) as Total
 FROM authors, titleauthor, titles, sales
 WHERE titles.title_id  = sales.title_id AND titles.title_id = titleauthor.title_id AND titleauthor.au_id = authors.au_id
 GROUP BY authors.au_id, au_lname, au_fname
 ORDER BY Total DESC
 LIMIT 3;*/
+
+/* 4. SELECT authors.au_id, au_lname, au_fname, SUM(qty) as Total
+FROM authors
+LEFT JOIN titleauthor ON titleauthor.au_id = authors.au_id
+LEFT JOIN titles ON titles.title_id = titleauthor.title_id
+LEFT JOIN sales ON titles.title_id  = sales.title_id
+GROUP BY authors.au_id, au_lname, au_fname
+ORDER BY Total DESC;*/
+
 
